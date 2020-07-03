@@ -12,6 +12,9 @@
 */
 
 //Route::get('/', 'HomeController@home');
+
+use App\Http\Controllers\PertanyaanController;
+
 Route::get('/form', 'AuthController@form');
 Route::get('/welcome', 'AuthController@welcome');
 Route::post('/welcome', 'AuthController@welcome_post');
@@ -30,3 +33,8 @@ Route::get('/item/create', function () {
 Route::get('/data-tables', function () {
     return view('items.data-table');
 });
+Route::get('/pertanyaan', 'PertanyaanController@index');
+Route::post('/pertanyaan', 'PertanyaanController@store');
+Route::get('/pertanyaan/create', 'PertanyaanController@create');
+Route::get('/jawaban/{pertanyaan_id}', 'JawabanController@index');
+Route::post('/jawaban/{pertanyaan_id}', 'JawabanController@store');

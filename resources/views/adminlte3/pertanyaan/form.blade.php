@@ -2,6 +2,8 @@
 
 @section('content')
         <div class="container">
+          <h2>Buat Pertanyaan</h2>
+          <hr>
             <form action="/pertanyaan" method="POST">
                 @csrf
                 <div class="form-group">
@@ -17,6 +19,7 @@
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="isi" placeholder="masukkan pertanyaan yang ingin anda sampaikan"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">kirim</button>
+                <a href="/pertanyaan" class="btn btn-danger">kembali</a>
             </form>
         </div>
 @endsection

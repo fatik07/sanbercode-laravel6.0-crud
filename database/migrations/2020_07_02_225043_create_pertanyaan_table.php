@@ -14,7 +14,7 @@ class CreatePertanyaanTable extends Migration
     public function up()
     {
         Schema::create('pertanyaan', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->string('nama', 255)->nullable();
             $table->string('judul', 255)->nullable();
             $table->string('isi', 255)->nullable();

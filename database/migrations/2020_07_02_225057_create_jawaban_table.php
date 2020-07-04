@@ -14,9 +14,9 @@ class CreateJawabanTable extends Migration
     public function up()
     {
         Schema::create('jawaban', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->integer('pertanyaan_id')->unsigned();
-            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan');
+            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan')->onDelete('cascade');
             $table->string('isi', 255)->nullable();
             $table->timestamps();
         });

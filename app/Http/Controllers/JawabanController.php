@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jawaban;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class JawabanController extends Controller
 {
@@ -25,12 +26,15 @@ class JawabanController extends Controller
      */
     public function store($pertanyaan_id, Request $request)
     {
+
         $request = $request->all();
+        //dd($request);
         unset($request["_token"]);
 
         $request['pertanyaan_id'] = $pertanyaan_id;
 
-        return Jawaban::save($request);
+        return  Jawaban::save($request);
+        redirect('/pertanyaan');
     }
 
     /**
@@ -39,9 +43,11 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($pertanyaan_id, Request $request)
     {
-        //
+        $request = $request->all();
+        $request['pertanyaan_id'] = $pertanyaan_id;
+        return Jawaban::lihat($pertanyaan_id);
     }
 
     /**
@@ -50,9 +56,11 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pertanyaan_id, Request $request)
     {
-        //
+        $request = $request->all();
+        $request['pertanyaan_id'] = $pertanyaan_id;
+        return Jawaban::ubah($pertanyaan_id);
     }
 
     /**
@@ -62,9 +70,12 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($pertanyaan_id, Request $request)
     {
-        //
+        //dd($request->all());
+        $data = $request->all();
+        $request['pertanyaan_id'] = $pertanyaan_id;
+        return Jawaban::update($pertanyaan_id, $request->all());
     }
 
     /**
@@ -73,8 +84,9 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($pertanyaan_id)
     {
-        //
+        $request['pertanyaan_id'] = $pertanyaan_id;
+        return Jawaban::deleted($pertanyaan_id);
     }
 }
